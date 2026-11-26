@@ -1,10 +1,10 @@
 import os
 
-LINE = "I sent a thumbs-up to end the chat, and it started a thread about my tone."
+LINE = "I found the missing HDMI cable; by lunch it had a booking calendar and a waiting list."
 
 
 def output_path():
-    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
     os.makedirs(output_dir, exist_ok=True)
     return os.path.join(output_dir, "entry.txt")
 
