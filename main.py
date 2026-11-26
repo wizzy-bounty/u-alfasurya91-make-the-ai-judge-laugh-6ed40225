@@ -1,17 +1,17 @@
+from pathlib import Path
 import os
 
-LINE = "My out-of-office reply is so polite that coworkers thank it, and one now asks it for advice."
+LINE = "Our office bought a focus pod so expensive we now hold meetings to decide who deserves silence."
 
 
-def output_path():
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
-    os.makedirs(out_dir, exist_ok=True)
-    return os.path.join(out_dir, "entry.txt")
+def resolve_output_dir() -> Path:
+    return Path(os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output")
 
 
-def main():
-    with open(output_path(), "wb") as fh:
-        fh.write(LINE.encode("utf-8"))
+def main() -> None:
+    output_dir = resolve_output_dir()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / "entry.txt").write_text(LINE, encoding="utf-8")
 
 
 if __name__ == "__main__":
