@@ -1,17 +1,14 @@
 import os
 
-ENTRY = "Our 30-minute meeting ended on time once, so we scheduled a follow-up to investigate."
+LINE = "My calendar says I'm free at 3; my inbox has already spent that freedom."
 
 
-def write_entry(output_dir: str) -> None:
-    os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, "entry.txt"), "w", encoding="utf-8", newline="") as f:
-        f.write(ENTRY)
-
-
-def main() -> None:
+def main():
     output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    write_entry(output_dir)
+    os.makedirs(output_dir, exist_ok=True)
+    entry_path = os.path.join(output_dir, "entry.txt")
+    with open(entry_path, "w", encoding="utf-8", newline="") as handle:
+        handle.write(LINE)
 
 
 if __name__ == "__main__":
